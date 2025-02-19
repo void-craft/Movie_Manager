@@ -1,0 +1,51 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "The VVITCH",
+      "year": 2015,
+      "director": "Robert Eggers",
+      "genre": "Horror"
+    },
+    {
+      "id": "3",
+      "name": "Gone Girl",
+      "year": 2014,
+      "director": "David Fincher",
+      "genre": "Thriller"
+    },
+    {
+      "id": "44",
+      "name": "Gone Girl",
+      "year": 2014,
+      "director": "David Fincher",
+      "genre": "Thriller"
+    },
+    {
+      "id": "11",
+      "name": "Sharknado",
+      "year": 2024
+    },
+    {
+      "name": "Lalala",
+      "year": 1995,
+      "director": "OooLala",
+      "genre": "Lalala",
+      "id": "45"
+    },
+    {
+      "id": "b52a",
+      "name": "The Grudge",
+      "year": 2000,
+      "director": "He who",
+      "genre": "Weee"
+    },
+    {
+      "id": "8723",
+      "name": "The Gorge",
+      "year": 2025,
+      "director": "N/A",
+      "genre": "Thriller"
+    }
+  ]
+}

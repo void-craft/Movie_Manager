@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="./src/styles/popupStyle.css">
+    <link rel="stylesheet" href="./src/styles/addMovie.css">
+    <link rel="stylesheet" href="./src/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="./src/script/services.js"></script>
+    <script defer src="./src/script/addMovie.js"></script>
+    <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+    <section class="buttons">
+        <button onclick="displayMovies()">View Movies</button>
+        <button onclick="showPopupForm()">Add Movie</button>
+        <button onclick="editMovie()">Edit Movie</button>
+        <button onclick="deleteMovie()">Delete Movie</button>
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search" onclick="deleteMovie()"></i></button>
+    </section>
+</body>
+
+</html>
