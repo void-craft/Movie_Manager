@@ -1,0 +1,92 @@
+@import 'variables.scss';
+
+.popup {
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  &__content {
+    background-color: $bg-light;
+    padding: $spacing-lg;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-md;
+    width: 350px;
+    max-width: 90%;
+  }
+
+  &__title {
+    margin-top: 0;
+    color: $text-dark;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__input {
+    padding: $spacing-sm;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    font-size: 16px;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $spacing-md;
+  }
+
+  &__button {
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 100px;
+    transition: background-color $transition-speed, transform $transition-speed;
+  }
+
+  &__submit-btn {
+    background-color: $tertiary-color;
+    color: $text-light;
+  }
+
+  &__submit-btn:hover {
+    background-color: $bg-dark;
+    transform: scale(1.05);
+  }
+
+  &__delete-btn {
+    background-color: $danger-color;
+    color: $text-light;
+  }
+
+  &__delete-btn:hover {
+    background-color: $danger-dark;
+    transform: scale(1.05);
+  }
+
+  &__cancel-btn {
+    background-color: $muted-color;
+    color: $text-dark;
+  }
+
+  &__cancel-btn:hover {
+    background-color: $highlight-color;
+    transform: scale(1.05);
+  }
+}

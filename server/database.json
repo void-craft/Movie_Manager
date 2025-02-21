@@ -1,50 +1,59 @@
 {
   "movies": [
     {
-      "id": "1",
-      "name": "The VVITCH",
-      "year": 2015,
-      "director": "Robert Eggers",
+      "id": "5aab",
+      "name": "P.S. I Love You",
+      "year": 2025,
+      "director": "Nobody Knows",
+      "genre": "Romance"
+    },
+    {
+      "id": "d736",
+      "name": "Jab We Met",
+      "year": 2006,
+      "director": "Tha",
+      "genre": "Romantic Comedy"
+    },
+    {
+      "id": "c921",
+      "name": "Inception",
+      "year": 2010,
+      "director": "Christopher Nolan",
+      "genre": "Sci-Fi"
+    },
+    {
+      "id": "a562",
+      "name": "The Conjuring",
+      "year": 2013,
+      "director": "James Wan",
       "genre": "Horror"
     },
     {
-      "id": "3",
-      "name": "Gone Girl",
+      "id": "f327",
+      "name": "Spirited Away",
+      "year": 2001,
+      "director": "Hayao Miyazaki",
+      "genre": "Drama"
+    },
+    {
+      "id": "e119",
+      "name": "Interstellar",
       "year": 2014,
-      "director": "David Fincher",
-      "genre": "Thriller"
+      "director": "Christopher Nolan",
+      "genre": "Sci-Fi"
     },
     {
-      "id": "44",
-      "name": "Gone Girl",
-      "year": 2014,
-      "director": "David Fincher",
-      "genre": "Thriller"
+      "id": "g888",
+      "name": "The Shining",
+      "year": 1980,
+      "director": "Stanley",
+      "genre": "Horror"
     },
     {
-      "id": "11",
-      "name": "Sharknado",
-      "year": 2024
-    },
-    {
-      "name": "Lalala",
-      "year": 1995,
-      "director": "OooLala",
-      "genre": "Lalala",
-      "id": "45"
-    },
-    {
-      "id": "b52a",
-      "name": "The Grudge",
-      "year": 2000,
-      "director": "He who",
-      "genre": "Weee"
-    },
-    {
-      "id": "8723",
-      "name": "The Gorge",
-      "year": 2025,
-      "director": "N/A",
+      "id": "8482",
+      "name": "Outsider",
+      "year": 2007,
+      "director": "Nobody",
       "genre": "Thriller"
     }
   ]

@@ -1,0 +1,43 @@
+/* --------------------------- COLOR VARIABLES --------------------------- */
+$primary-color: #7E5A3C;
+$secondary-color: #A77F4B;
+$tertiary-color: #6C7B6A;
+$muted-color: #D1C6B1;
+$danger-color: #9E2A2B;
+$danger-dark: #6A1B1B;
+$text-light: #F1E8D0;
+$text-dark: #3A3B35;
+$text-muted: $muted-color;
+$border-color: $muted-color;
+$highlight-color: #9A7C4F;
+$button-color: $secondary-color;
+
+/* --------------------------- STATUS COLORS --------------------------- */
+$info-color: #5C9A89;
+$success-color: #6F8F4E;
+$warning-color: #D7A237;
+
+/* --------------------------- BACKGROUND COLORS --------------------------- */
+$bg-dark: #3B4B3A;
+$bg-light: #F2E8D0;
+$bg-alternate: #A08B74;
+$bg-hover: #8A5C3D;
+
+/* --------------------------- SPACING --------------------------- */
+$spacing-xs: 5px;
+$spacing-sm: 8px;
+$spacing-md: 10px;
+$spacing-lg: 15px;
+$spacing-xl: 20px;
+
+/* --------------------------- BORDER RADIUS --------------------------- */
+$radius-sm: 4px;
+$radius-md: 10px;
+$radius-circle: 50%;
+
+/* --------------------------- SHADOWS --------------------------- */
+$shadow-sm: 0 2px 5px rgba(50, 30, 15, 0.1);
+$shadow-md: 2px 2px 5px rgba(50, 30, 15, 0.3);
+
+/* --------------------------- ANIMATION --------------------------- */
+$transition-speed: 0.2s;

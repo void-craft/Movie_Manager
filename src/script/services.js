@@ -1,4 +1,4 @@
-/* ---------------------------- ADD A MOVIE----------------------------  */
+/* ---------------------------- ADD A MOVIE ---------------------------- */
 async function postMovie(movie) {
   try {
     let response = await fetch('http://localhost:3000/movies', {
@@ -8,77 +8,82 @@ async function postMovie(movie) {
     });
     let data = await response.json();
     console.log('Movie Created:', data);
+    return data;
   } catch (error) {
     console.error('Error creating movie:', error);
+    throw error;
   }
 }
 
-/* ---------------------------- GET A MOVIE ----------------------------  */
+/* ---------------------------- GET A MOVIE ---------------------------- */
 async function getMovie(movieId) {
   try {
     let response = await fetch(`http://localhost:3000/movies/${movieId}`);
+    if (!response.ok) {
+      throw new Error(`Movie with ID ${movieId} not found`);
+    }
     let movie = await response.json();
     console.log('Movie Requested: ', movie);
+    return movie;
   } catch (error) {
     console.error('Error fetching the movie:', error);
+    throw error;
   }
 }
 
-/* ---------------------------- GET ALL MOVIES ----------------------------  */
+/* ---------------------------- GET ALL MOVIES ---------------------------- */
 async function getMovies() {
   try {
     let response = await fetch(`http://localhost:3000/movies/`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies. Server returned ${response.status}`);
+    }
     let movies = await response.json();
     console.log('Here are the Movies: ', movies);
     return movies;
   } catch (error) {
     console.error('Error fetching the movies:', error);
+    throw error;
   }
 }
 
-/* ---------------------------- DISPLAY ALL MOVIES ON HTML ----------------------------  */
-async function displayMovies() {
+/* ---------------------------- UPDATE A MOVIE ---------------------------- */
+async function updateMovie(movie) {
   try {
-    let movies = await getMovies();
-
-    if (movies?.length) {
-      document.querySelector('table')?.remove();
-
-      let table = document.createElement('table');
-      table.className = 'movie-table';
-      let headerRow = document.createElement('tr');
-      document.body.appendChild(table);
-      table.appendChild(headerRow);
-
-      let keys = Object.keys(movies[0]);
-      keys.forEach((key) => {
-        let th = document.createElement('th');
-        th.textContent = key;
-        headerRow.appendChild(th);
-      });
-
-      movies.forEach((movie) => {
-        let row = document.createElement('tr');
-        keys.forEach((key) => {
-          let td = document.createElement('td');
-          td.textContent = movie[key] ?? 'N/A';
-          row.appendChild(td);
-        });
-        table.appendChild(row);
-      });
+    let response = await fetch(`http://localhost:3000/movies/${movie.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(movie),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to update movie. Server returned ${response.status}`);
     }
+    
+    let data = await response.json();
+    console.log('Movie Updated:', data);
+    return data;
   } catch (error) {
-    console.error('Error displaying the movies:', error);
+    console.error('Error updating movie:', error);
+    throw error;
   }
 }
 
-/* ---------------------------- REQUESTS ----------------------------  */
-
-/* ---------------------------- END OF CODE ----------------------------  */
-// function updateAMovie(){
-
-// }
-
-// function deleteAMovie(){
-
-// }
+/* ---------------------------- DELETE A MOVIE ---------------------------- */
+async function deleteMovieById(movieId) {
+  try {
+    let response = await fetch(`http://localhost:3000/movies/${movieId}`, {
+      method: 'DELETE',
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to delete movie. Server returned ${response.status}`);
+    }
+    
+    console.log(`Movie with ID ${movieId} deleted successfully`);
+    return true;
+  } catch (error) {
+    console.error('Error deleting movie:', error);
+    throw error;
+  }
+}

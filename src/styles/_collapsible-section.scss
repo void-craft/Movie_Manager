@@ -1,0 +1,118 @@
+.collapsible-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  background-color: $bg-light;
+  border-radius: $radius-sm;
+  margin-top: $spacing-md;
+
+  &.expanded {
+    max-height: 500px;
+  }
+
+  h3, h4 {
+    margin: 0 0 $spacing-md 0;
+    text-align: center;
+    color: $primary-color;
+  }
+}
+
+.collapsible-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-md;
+
+  input {
+    padding: $spacing-sm;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    font-size: 16px;
+  }
+
+
+  .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    justify-content: flex-end;
+
+    button {
+      width: 100%;
+    }
+
+    .controls__button {
+      padding: $spacing-sm $spacing-md;
+      border: none;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      transition: background-color $transition-speed;
+
+      &--clear {
+        background-color: $muted-color;
+        color: $text-dark;
+      }
+
+      &--search {
+        background-color: $info-color;
+        color: $text-light;
+      }
+
+      &--save {
+        background-color: $success-color;
+        color: $text-light;
+      }
+
+      &--cancel {
+        background-color: $danger-color;
+        color: $text-light;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.search-results {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  background-color: $bg-dark;
+  border-radius: $radius-sm;
+  max-height: 200px;
+  overflow-y: auto;
+
+  #cancelResultsButton {
+    background-color: $warning-color;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+
+    &:active {
+      filter: brightness(0.8);
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: $spacing-sm;
+      margin-bottom: $spacing-xs;
+      background-color: $bg-light;
+      color: $text-dark;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      transition: background-color $transition-speed;
+
+      &:hover {
+        color: $text-light;
+        background-color: $bg-hover;
+      }
+    }
+  }
+}

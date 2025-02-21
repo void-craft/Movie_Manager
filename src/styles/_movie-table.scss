@@ -1,0 +1,119 @@
+@import 'variables.scss';
+
+.movie-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $spacing-xl 0;
+  box-shadow: $shadow-sm;
+  background-color: $bg-light;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  color: $text-dark;
+  
+  th {
+    background-color: $secondary-color;
+    color: $text-light;
+    padding: $spacing-md $spacing-lg;
+    text-align: left;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    text-transform: capitalize;
+  }
+  
+  tr {
+    border-bottom: 1px solid $border-color;
+    
+    &:nth-child(even) {
+      background-color: $muted-color;
+    }
+    
+    &:hover {
+      background-color: rgba($bg-hover, 0.2);
+    }
+  }
+  
+  td {
+    padding: $spacing-md $spacing-lg;
+    vertical-align: middle;
+    border: 1px solid $border-color;
+    text-align: left;
+  }
+  
+  .movie-select-checkbox, 
+  .select-all-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  .actions-cell {
+    display: flex;
+    gap: $spacing-xs;
+    justify-content: center;
+  }
+  
+  .action-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-circle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color $transition-speed, transform $transition-speed;
+    
+    &.edit-btn {
+      color: $tertiary-color;
+      
+      &:hover {
+        background-color: rgba($tertiary-color, 0.2);
+        transform: scale(1.1);
+      }
+    }
+    
+    &.delete-btn {
+      color: $tertiary-color;
+      
+      &:hover {
+        background-color: rgba($tertiary-color, 0.2);
+        transform: scale(1.1);
+      }
+    }
+    
+    &:active {
+      transform: scale(1);
+      filter: brightness(0.85);
+    }
+  }
+}
+
+// Bulk delete button styling
+.bulk-delete-container {
+  margin: $spacing-md 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bulk-delete-btn {
+  background-color: $danger-color;
+  color: $text-light;
+  border: none;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-weight: bold;
+  
+  &:hover {
+    background-color: $danger-dark;
+  }
+  
+  i {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,46 @@
+@import 'variables.scss';
+
+.notification-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-sm;
+  color: $text-light;
+  z-index: 1001;
+  box-shadow: $shadow-md;
+  transition: opacity $transition-speed, transform $transition-speed;
+  min-width: 250px;
+  text-align: center;
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &--success {
+    background-color: $tertiary-color;
+  }
+
+  &--error {
+    background-color: $danger-color;
+  }
+
+  &--info {
+    background-color: $primary-color;
+  }
+
+  &--fade-out {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
