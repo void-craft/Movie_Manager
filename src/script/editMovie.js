@@ -241,3 +241,15 @@ async function updateMovie(movie) {
     throw error;
   }
 }
+
+function showEditMovieForm(movie) {
+  toggleEditMovieSection(true);
+  populateEditForm(movie);
+
+  const editMovieSection = document.getElementById('editMovieSection');
+  editMovieSection.classList.add('highlight-section');
+
+  setTimeout(() => {
+    editMovieSection.classList.remove('highlight-section');
+  }, 2000);
+}

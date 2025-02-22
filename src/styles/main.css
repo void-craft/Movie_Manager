@@ -526,4 +526,16 @@ main {
 .search-results ul li:hover {
   color: #F1E8D0;
   background-color: #8A5C3D;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: rgba(255, 255, 0, 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+.highlight-section {
+  animation: highlight 2s ease-in-out;
 }/*# sourceMappingURL=main.css.map */

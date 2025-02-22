@@ -167,7 +167,6 @@ function updateBulkDeleteButton() {
   }
 }
 
-// Combined function for single and bulk deletion
 function confirmDelete(movies) {
   if (movies.length === 0) {
     showInfoMessage('No movies selected for deletion.');
