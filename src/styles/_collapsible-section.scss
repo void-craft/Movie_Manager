@@ -7,7 +7,7 @@
   margin-top: $spacing-md;
 
   &.expanded {
-    max-height: 500px;
+    max-height: 600px;
   }
 
   h3, h4 {
@@ -30,7 +30,6 @@
     font-size: 16px;
   }
 
-
   .form-buttons {
     display: flex;
     flex-direction: column;
@@ -39,22 +38,28 @@
 
     button {
       width: 100%;
-    }
-
-    .controls__button {
       padding: $spacing-sm $spacing-md;
       border: none;
       border-radius: $radius-sm;
       cursor: pointer;
       transition: background-color $transition-speed;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: center;
+    }
 
+    .controls__button {
       &--clear {
         background-color: $muted-color;
         color: $text-dark;
+        padding: $spacing-sm $spacing-md;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
       }
 
       &--search {
-        background-color: $info-color;
+        background-color: $success-color;
         color: $text-light;
       }
 
@@ -64,7 +69,12 @@
       }
 
       &--cancel {
-        background-color: $danger-color;
+        background-color: $info-color;
+        color: $text-light;
+      }
+
+      &--submit {
+        background-color: $success-color;
         color: $text-light;
       }
 
@@ -112,6 +122,56 @@
       &:hover {
         color: $text-light;
         background-color: $bg-hover;
+      }
+    }
+  }
+}
+
+.delete-confirmation {
+  padding: $spacing-md;
+  background-color: $bg-light;
+  border-radius: $radius-sm;
+  margin-top: $spacing-md;
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    text-align: center;
+    color: $text-dark;
+  }
+
+  .movie-details-container {
+    margin-bottom: $spacing-md;
+
+    p {
+      margin: $spacing-xs 0;
+      color: $text-dark;
+    }
+  }
+
+  .form-buttons {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+
+    button {
+      padding: $spacing-sm $spacing-md;
+      border: none;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      transition: background-color $transition-speed;
+
+      &#deleteButton {
+        background-color: $danger-color;
+        color: $text-light;
+      }
+
+      &#cancelDeleteConfirmButton {
+        background-color: $muted-color;
+        color: $text-dark;
+      }
+
+      &:hover {
+        opacity: 0.9;
       }
     }
   }

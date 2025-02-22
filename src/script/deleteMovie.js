@@ -1,31 +1,16 @@
-function toggleDeleteMovieSection() {
+function toggleDeleteMovieSection(expand = true) {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
-  const deleteSearchButton = document.getElementById('deleteSearchButton');
-  const deleteClearButton = document.getElementById('deleteClearButton');
-  const deleteCancelButton = document.getElementById('deleteCancelButton');
 
   addMovieSection?.classList.remove('expanded');
   editMovieSection?.classList.remove('expanded');
 
-  const isExpanded = deleteMovieSection.classList.toggle('expanded');
-
-  if (isExpanded) {
-    clearDeleteMovieFields();
-    setDeleteMovieState('search');
-    hideDeleteSearchResults();
-    hideDeleteConfirmation();
-
-    deleteSearchButton.style.display = 'inline-block';
-    deleteClearButton.style.display = 'inline-block';
-    deleteCancelButton.style.display = 'inline-block';
+  if (expand) {
+    deleteMovieSection.classList.add('expanded');
+  } else {
+    deleteMovieSection.classList.remove('expanded');
   }
-}
-
-function clearDeleteMovieFields() {
-  document.getElementById('deleteMovieForm').reset();
-  document.getElementById('deleteMovieId').value = '';
 }
 
 function setDeleteMovieState(state) {
@@ -50,6 +35,11 @@ function setDeleteMovieState(state) {
     searchResults.style.display = 'none';
     confirmSection.style.display = 'block';
   }
+}
+
+function clearDeleteMovieFields() {
+  document.getElementById('deleteMovieForm').reset();
+  document.getElementById('deleteMovieId').value = '';
 }
 
 function showDeleteSearchResults(movies) {

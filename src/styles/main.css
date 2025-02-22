@@ -436,7 +436,7 @@ main {
   margin-top: 10px;
 }
 .collapsible-section.expanded {
-  max-height: 500px;
+  max-height: 600px;
 }
 .collapsible-section h3, .collapsible-section h4 {
   margin: 0 0 10px 0;
@@ -464,20 +464,25 @@ main {
 }
 .collapsible-form .form-buttons button {
   width: 100%;
-}
-.collapsible-form .form-buttons .controls__button {
   padding: 8px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
 }
 .collapsible-form .form-buttons .controls__button--clear {
   background-color: #D1C6B1;
   color: #3A3B35;
+  padding: 8px 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
 }
 .collapsible-form .form-buttons .controls__button--search {
-  background-color: #5C9A89;
+  background-color: #6F8F4E;
   color: #F1E8D0;
 }
 .collapsible-form .form-buttons .controls__button--save {
@@ -485,7 +490,11 @@ main {
   color: #F1E8D0;
 }
 .collapsible-form .form-buttons .controls__button--cancel {
-  background-color: #9E2A2B;
+  background-color: #5C9A89;
+  color: #F1E8D0;
+}
+.collapsible-form .form-buttons .controls__button--submit {
+  background-color: #6F8F4E;
   color: #F1E8D0;
 }
 .collapsible-form .form-buttons .controls__button:hover {
@@ -526,6 +535,48 @@ main {
 .search-results ul li:hover {
   color: #F1E8D0;
   background-color: #8A5C3D;
+}
+
+.delete-confirmation {
+  padding: 10px;
+  background-color: #F2E8D0;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.delete-confirmation h4 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: #3A3B35;
+}
+.delete-confirmation .movie-details-container {
+  margin-bottom: 10px;
+}
+.delete-confirmation .movie-details-container p {
+  margin: 5px 0;
+  color: #3A3B35;
+}
+.delete-confirmation .form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.delete-confirmation .form-buttons button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.delete-confirmation .form-buttons button#deleteButton {
+  background-color: #9E2A2B;
+  color: #F1E8D0;
+}
+.delete-confirmation .form-buttons button#cancelDeleteConfirmButton {
+  background-color: #D1C6B1;
+  color: #3A3B35;
+}
+.delete-confirmation .form-buttons button:hover {
+  opacity: 0.9;
 }
 
 @keyframes highlight {

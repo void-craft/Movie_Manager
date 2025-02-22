@@ -23,123 +23,131 @@
     <h1 class="header__title">Movie Management System</h1>
   </header>
   <main>
+    <!-- --------------------- LEFT SECTION --------------------- -->
     <section class="controls">
+
       <div class="controls__buttons">
+        <!-- ------- ADD MOVIE ------- -->
         <button class="controls__button controls__button--add" onclick="toggleAddMovieSection()">
           <i class="fa fa-plus"></i> Add Movie
         </button>
+        <div id="addMovieSection" class="collapsible-section">
+          <form id="addMovieForm" class="collapsible-form">
+            <input type="text" placeholder="Enter movie name" required />
+            <input type="number" placeholder="Enter release year" required />
+            <input type="text" placeholder="Enter director name" required />
+            <input type="text" placeholder="Enter genre" required />
+            <div class="form-buttons">
+              <button type="submit" class="controls__button controls__button--submit">Submit</button>
+              <button type="button" class="controls__button controls__button--cancel"
+                onclick="toggleAddMovieSection()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ------- EDIT MOVIE ------- -->
         <button class="controls__button controls__button--edit" onclick="toggleEditMovieSection()">
           <i class="fa fa-edit"></i> Edit Movie
         </button>
+        <div id="editMovieSection" class="collapsible-section">
+          <h3 id="editMovieHeading">Search for a Movie to Edit</h3>
+          <form id="editMovieForm" class="collapsible-form">
+            <input type="hidden" id="editMovieId" />
+            <input type="text" id="editMovieName" placeholder="Enter movie name" />
+            <input type="number" id="editMovieYear" placeholder="Enter release year" />
+            <input type="text" id="editMovieDirector" placeholder="Enter director name" />
+            <input type="text" id="editMovieGenre" placeholder="Enter genre" />
+            <input type="number" id="editMovieIdSearch" placeholder="Enter movie ID" />
+            <div class="form-buttons">
+              <button type="button" id="cancelButton" class="controls__button controls__button--cancel">Cancel</button>
+              <button type="button" id="clearButton" class="controls__button controls__button--clear"
+                style="display: none;">Clear Fields</button>
+              <button type="submit" id="searchButton" class="controls__button controls__button--search"
+                style="display: none;">Search</button>
+            </div>
+          </form>
+
+          <div id="searchResults" class="search-results" style="display: none;">
+            <ul id="searchResultsList"></ul>
+            <div class="form-buttons">
+              <button type="button" id="cancelResultsButton"
+                class="controls__button controls__button--cancel">Cancel</button>
+            </div>
+          </div>
+
+          <form id="editMovieEditForm" class="collapsible-form" style="display: none;">
+            <input type="hidden" id="editMovieEditId" />
+            <input type="text" id="editMovieEditName" placeholder="Enter movie name" required />
+            <input type="number" id="editMovieEditYear" placeholder="Enter release year" required />
+            <input type="text" id="editMovieEditDirector" placeholder="Enter director name" required />
+            <input type="text" id="editMovieEditGenre" placeholder="Enter genre" required />
+            <div class="form-buttons">
+              <button type="button" id="saveButton" class="controls__button controls__button--save">Save</button>
+              <button type="button" id="cancelEditButton"
+                class="controls__button controls__button--cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ------- DELETE MOVIE ------- -->
         <button class="controls__button controls__button--delete" onclick="toggleDeleteMovieSection()">
           <i class="fa fa-trash"></i> Delete Movie
         </button>
-      </div>
+        <div id="deleteMovieSection" class="collapsible-section">
+          <h3 id="deleteMovieHeading">Search for a Movie to Deleteo</h3>
 
-      <div id="addMovieSection" class="collapsible-section">
-        <form id="addMovieForm" class="collapsible-form">
-          <input type="text" placeholder="Enter movie name" required />
-          <input type="number" placeholder="Enter release year" required />
-          <input type="text" placeholder="Enter director name" required />
-          <input type="text" placeholder="Enter genre" required />
-          <div class="form-buttons">
-            <button type="submit" class="controls__button controls__button--submit">Submit</button>
-            <button type="button" class="controls__button controls__button--cancel"
-              onclick="toggleAddMovieSection()">Cancel</button>
-          </div>
-        </form>
-      </div>
+          <form id="deleteMovieForm" class="collapsible-form">
+            <input type="hidden" id="deleteMovieId" />
+            <input type="text" id="deleteMovieName" placeholder="Enter movie name" />
+            <input type="number" id="deleteMovieYear" placeholder="Enter release year" />
+            <input type="text" id="deleteMovieDirector" placeholder="Enter director name" />
+            <input type="text" id="deleteMovieGenre" placeholder="Enter genre" />
+            <input type="number" id="deleteMovieIdSearch" placeholder="Enter movie ID" />
 
-      <div id="editMovieSection" class="collapsible-section">
-        <h3 id="editMovieHeading">Search for a Movie to Edit</h3>
-        
-        <form id="editMovieForm" class="collapsible-form">
-          <input type="hidden" id="editMovieId" />
-          <input type="text" id="editMovieName" placeholder="Enter movie name" />
-          <input type="number" id="editMovieYear" placeholder="Enter release year" />
-          <input type="text" id="editMovieDirector" placeholder="Enter director name" />
-          <input type="text" id="editMovieGenre" placeholder="Enter genre" />
-          <input type="number" id="editMovieIdSearch" placeholder="Enter movie ID" />
-          <div class="form-buttons">
-            <button type="button" id="cancelButton" class="controls__button controls__button--cancel">Cancel</button>
-            <button type="button" id="clearButton" class="controls__button controls__button--clear"
-              style="display: none;">Clear Fields</button>
-            <button type="submit" id="searchButton" class="controls__button controls__button--search"
-              style="display: none;">Search</button>
-          </div>
-        </form>
+            <div class="form-buttons">
+              <button type="submit" id="deleteSearchButton"
+                class="controls__button controls__button--search">Search</button>
+              <button type="button" id="deleteCancelButton"
+                class="controls__button controls__button--cancel">Cancel</button>
+              <button type="button" id="deleteClearButton" class="controls__button controls__button--clear">Clear
+                Fields</button>
+            </div>
 
-        <div id="searchResults" class="search-results" style="display: none;">
-          <h4>Search Results</h4>
-          <ul id="searchResultsList"></ul>
-          <div class="form-buttons">
-            <button type="button" id="cancelResultsButton"
-              class="controls__button controls__button--cancel">Cancel</button>
+          </form>
+
+          <div id="deleteSearchResults" class="search-results" style="display: none;">
+            <h4>Search Results</h4>
+            <ul id="deleteSearchResultsList"></ul>
+            <div class="form-buttons">
+              <button type="button" id="cancelDeleteResultsButton"
+                class="controls__button controls__button--cancel">Back
+                to Search</button>
+            </div>
           </div>
-        </div>
- 
-        <form id="editMovieEditForm" class="collapsible-form" style="display: none;">
-          <input type="hidden" id="editMovieEditId" />
-          <input type="text" id="editMovieEditName" placeholder="Enter movie name" required />
-          <input type="number" id="editMovieEditYear" placeholder="Enter release year" required />
-          <input type="text" id="editMovieEditDirector" placeholder="Enter director name" required />
-          <input type="text" id="editMovieEditGenre" placeholder="Enter genre" required />
-          <div class="form-buttons">
-            <button type="button" id="saveButton" class="controls__button controls__button--save">Save</button>
-            <button type="button" id="cancelEditButton"
-              class="controls__button controls__button--cancel">Cancel</button>
-          </div>
-        </form>
-      </div>
-      
-      <div id="deleteMovieSection" class="collapsible-section">
-        <h3 id="deleteMovieHeading">Search for a Movie to Delete</h3>
-        
-        <form id="deleteMovieForm" class="collapsible-form">
-          <input type="hidden" id="deleteMovieId" />
-          <input type="text" id="deleteMovieName" placeholder="Enter movie name" />
-          <input type="number" id="deleteMovieYear" placeholder="Enter release year" />
-          <input type="text" id="deleteMovieDirector" placeholder="Enter director name" />
-          <input type="text" id="deleteMovieGenre" placeholder="Enter genre" />
-          <input type="number" id="deleteMovieIdSearch" placeholder="Enter movie ID" />
-          <div class="form-buttons">
-            <button type="button" id="deleteCancelButton"
-              class="controls__button controls__button--cancel">Cancel</button>
-            <button type="button" id="deleteClearButton" class="controls__button controls__button--clear">Clear
-              Fields</button>
-            <button type="submit" id="deleteSearchButton"
-              class="controls__button controls__button--search">Search</button>
-          </div>
-        </form>
-        
-        <div id="deleteSearchResults" class="search-results" style="display: none;">
-          <h4>Search Results</h4>
-          <ul id="deleteSearchResultsList"></ul>
-          <div class="form-buttons">
-            <button type="button" id="cancelDeleteResultsButton" class="controls__button controls__button--cancel">Back
-              to Search</button>
-          </div>
-        </div>
-        
-        <div id="deleteConfirmation" class="delete-confirmation" style="display: none;">
-          <h4>Are you sure you want to delete this movie?</h4>
-          <div id="deleteMovieDetails" class="movie-details-container"></div>
-          <input type="hidden" id="deleteMovieConfirmId" />
-          <div class="form-buttons">
-            <button type="button" id="deleteButton" class="controls__button controls__button--delete">Delete
-              Movie</button>
-            <button type="button" id="cancelDeleteConfirmButton"
-              class="controls__button controls__button--cancel">Cancel</button>
+
+          <div id="deleteConfirmation" class="delete-confirmation" style="display: none;">
+            <h4>Are you sure you want to delete this movie?</h4>
+            <div id="deleteMovieDetails" class="movie-details-container"></div>
+            <input type="hidden" id="deleteMovieConfirmId" />
+            <div class="form-buttons">
+              <button type="button" id="deleteButton" class="controls__button controls__button--delete">Delete
+                Movie</button>
+              <button type="button" id="cancelDeleteConfirmButton"
+                class="controls__button controls__button--cancel">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- ------- FOOTER ------- -->
       <footer class="footer">
         <p class="footer__text">&copy; 2025 Movie Management System</p>
       </footer>
     </section>
+
+    <!-- --------------------- RIGHT SECTION --------------------- -->
     <section class="movies">
-      
+
     </section>
   </main>
 </body>

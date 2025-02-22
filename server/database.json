@@ -15,13 +15,6 @@
       "genre": "Romantic Comedy"
     },
     {
-      "id": "c921",
-      "name": "Inception",
-      "year": 2010,
-      "director": "Christopher Nolan",
-      "genre": "Sci-Fi"
-    },
-    {
       "id": "a562",
       "name": "The Conjuring",
       "year": 2013,
@@ -30,7 +23,7 @@
     },
     {
       "id": "8482",
-      "name": "Outsider II",
+      "name": "Outsider III",
       "year": 2007,
       "director": "Nobody",
       "genre": "Thriller"

@@ -167,38 +167,40 @@ function updateBulkDeleteButton() {
   }
 }
 
+// Reuse the delete section for confirmation
 function confirmDelete(movies) {
   if (movies.length === 0) {
     showInfoMessage('No movies selected for deletion.');
     return;
   }
 
-  const { popup, popupContent } = createPopup('confirmDeletePopup', movies.length > 1 ? 'Confirm Multiple Deletion' : 'Confirm Delete');
+  // Open the delete section
+  toggleDeleteMovieSection(true);
 
-  const messageDiv = document.createElement('div');
-  messageDiv.className = 'confirm-message';
+  // Show the confirmation UI
+  setDeleteMovieState('confirm');
 
-  let message = `<p>Are you sure you want to delete ${movies.length} movie(s)?</p>`;
+  // Populate the confirmation section with movie details
+  const confirmSection = document.getElementById('deleteConfirmation');
+  const movieDetails = document.getElementById('deleteMovieDetails');
+  const deleteMovieIdField = document.getElementById('deleteMovieConfirmId');
 
-  if (movies.length <= 10) {
-    message += '<ul>';
-    movies.forEach((movie) => {
-      message += `<li>"${movie.name}"</li>`;
-    });
-    message += '</ul>';
+  if (movies.length === 1) {
+    const movie = movies[0];
+    movieDetails.innerHTML = `
+      <p><strong>Name:</strong> ${movie.name}</p>
+      <p><strong>Year:</strong> ${movie.year}</p>
+      <p><strong>Director:</strong> ${movie.director}</p>
+      <p><strong>Genre:</strong> ${movie.genre}</p>
+      <p><strong>ID:</strong> ${movie.id}</p>
+    `;
+    deleteMovieIdField.value = movie.id;
   } else {
-    message += `<p>You've selected ${movies.length} movies for deletion.</p>`;
+    movieDetails.innerHTML = `<p>You've selected ${movies.length} movies for deletion.</p>`;
   }
 
-  message += '<p><strong>This action cannot be undone.</strong></p>';
-  messageDiv.innerHTML = message;
-
-  const buttonsContainer = document.createElement('div');
-  buttonsContainer.className = 'button-container';
-
-  const deleteButton = document.createElement('button');
-  deleteButton.textContent = `Delete ${movies.length} Movie${movies.length > 1 ? 's' : ''}`;
-  deleteButton.className = 'delete-btn';
+  // Handle the delete button click
+  const deleteButton = document.getElementById('deleteButton');
   deleteButton.onclick = async () => {
     try {
       showInfoMessage('Deleting selected movies...');
@@ -216,45 +218,21 @@ function confirmDelete(movies) {
       const successCount = results.filter((r) => r.success).length;
       const failureCount = results.length - successCount;
 
-      closePopup('confirmDeletePopup');
-
       if (failureCount === 0) {
         showSuccessMessage(`Successfully deleted ${successCount} movie${successCount > 1 ? 's' : ''}`);
       } else {
         showInfoMessage(`Deleted ${successCount} movie${successCount > 1 ? 's' : ''}, ${failureCount} failed`);
       }
 
-      // Uncheck all checkboxes after bulk deletion
-      const checkboxes = document.querySelectorAll('.movie-select-checkbox:checked');
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-      updateBulkDeleteButton();
+      // Reset the delete section
+      setDeleteMovieState('search');
+      clearDeleteMovieFields();
+      toggleDeleteMovieSection(false);
 
+      // Refresh the movie list
       showMovies();
     } catch (error) {
       showErrorMessage(`Error during deletion: ${error.message}`);
     }
   };
-
-  const cancelButton = document.createElement('button');
-  cancelButton.textContent = 'Cancel';
-  cancelButton.className = 'cancel-btn';
-  cancelButton.onclick = () => {
-    closePopup('confirmDeletePopup');
-    if (movies.length > 1) {
-      // Uncheck all checkboxes if it's a bulk deletion
-      const checkboxes = document.querySelectorAll('.movie-select-checkbox:checked');
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-      updateBulkDeleteButton();
-    }
-  };
-
-  buttonsContainer.appendChild(deleteButton);
-  buttonsContainer.appendChild(cancelButton);
-
-  popupContent.appendChild(messageDiv);
-  popupContent.appendChild(buttonsContainer);
 }
