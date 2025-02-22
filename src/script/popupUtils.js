@@ -1,4 +1,3 @@
-// Create a standard popup container
 function createPopup(id, title) {
   const popup = document.createElement('div');
   popup.id = id;
@@ -24,6 +23,13 @@ function createPopup(id, title) {
   return { popup, popupContent };
 }
 
+function closePopup(popupId) {
+  const popup = document.getElementById(popupId);
+  if (popup) {
+    popup.remove();
+  }
+}
+
 function createPopupForm(id) {
   const form = document.createElement('form');
   form.id = id;
@@ -40,7 +46,6 @@ function createInput(type, placeholder, required = true) {
   return input;
 }
 
-// Create a standard button container with submit and cancel buttons
 function createButtonContainer(submitText, cancelCallback, submitClassName = 'popup__submit-btn', cancelClassName = 'popup__cancel-btn') {
   const buttonsContainer = document.createElement('div');
   buttonsContainer.className = 'popup__button-container';
@@ -60,12 +65,4 @@ function createButtonContainer(submitText, cancelCallback, submitClassName = 'po
   buttonsContainer.appendChild(cancelButton);
 
   return buttonsContainer;
-}
-
-// Close any popup by ID
-function closePopup(popupId) {
-  const popup = document.getElementById(popupId);
-  if (popup) {
-    popup.remove();
-  }
 }

@@ -259,7 +259,7 @@ main {
   padding: 10px 15px;
   border-radius: 4px;
   color: #F1E8D0;
-  z-index: 1001;
+  z-index: 99;
   box-shadow: 2px 2px 5px rgba(50, 30, 15, 0.3);
   transition: opacity 0.2s, transform 0.2s;
   min-width: 250px;
@@ -291,13 +291,17 @@ main {
     transform: translate(-50%, -50%) scale(1);
   }
 }
-/* --------------------------- COLOR VARIABLES --------------------------- */
-/* --------------------------- STATUS COLORS --------------------------- */
-/* --------------------------- BACKGROUND COLORS --------------------------- */
-/* --------------------------- SPACING --------------------------- */
-/* --------------------------- BORDER RADIUS --------------------------- */
-/* --------------------------- SHADOWS --------------------------- */
-/* --------------------------- ANIMATION --------------------------- */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 .popup__overlay {
   position: fixed;
   top: 0;
@@ -305,18 +309,17 @@ main {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  z-index: 1001;
 }
 .popup__content {
+  position: relative;
   background-color: #F2E8D0;
   padding: 15px;
   border-radius: 4px;
   box-shadow: 2px 2px 5px rgba(50, 30, 15, 0.3);
   width: 350px;
   max-width: 90%;
+  z-index: 1002;
 }
 .popup__title {
   margin-top: 0;
@@ -336,11 +339,6 @@ main {
   border-radius: 4px;
   font-size: 16px;
 }
-.popup__button-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
 .popup__button {
   padding: 8px 10px;
   border: none;
@@ -350,6 +348,11 @@ main {
   min-width: 100px;
   transition: background-color 0.2s, transform 0.2s;
 }
+.popup__button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 .popup__submit-btn {
   background-color: #6C7B6A;
   color: #F1E8D0;
@@ -358,19 +361,32 @@ main {
   background-color: #3B4B3A;
   transform: scale(1.05);
 }
-.popup__delete-btn {
+
+.confirm-message {
+  font-size: 16px;
+  color: #3A3B35;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.confirm-message strong {
+  font-weight: bold;
+  color: #9E2A2B;
+}
+
+.delete-btn {
   background-color: #9E2A2B;
   color: #F1E8D0;
 }
-.popup__delete-btn:hover {
+.delete-btn:hover {
   background-color: #6A1B1B;
   transform: scale(1.05);
 }
-.popup__cancel-btn {
+
+.cancel-btn {
   background-color: #D1C6B1;
   color: #3A3B35;
 }
-.popup__cancel-btn:hover {
+.cancel-btn:hover {
   background-color: #9A7C4F;
   transform: scale(1.05);
 }

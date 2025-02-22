@@ -10,8 +10,8 @@
   overflow: hidden;
   color: $text-dark;
   
-  th {
-    background-color: $secondary-color;
+  & th {
+  background-color: $secondary-color;
     color: $text-light;
     padding: $spacing-md $spacing-lg;
     text-align: left;
@@ -21,7 +21,7 @@
     text-transform: capitalize;
   }
   
-  tr {
+  & tr {
     border-bottom: 1px solid $border-color;
     
     &:nth-child(even) {
@@ -33,27 +33,27 @@
     }
   }
   
-  td {
+  & td {
     padding: $spacing-md $spacing-lg;
     vertical-align: middle;
     border: 1px solid $border-color;
     text-align: left;
   }
   
-  .movie-select-checkbox, 
+  & .movie-select-checkbox, 
   .select-all-checkbox {
     width: 18px;
     height: 18px;
     cursor: pointer;
   }
   
-  .actions-cell {
+  & .actions-cell {
     display: flex;
     gap: $spacing-xs;
     justify-content: center;
   }
   
-  .action-btn {
+  & .action-btn {
     border: none;
     background: none;
     cursor: pointer;
@@ -90,7 +90,6 @@
   }
 }
 
-// Bulk delete button styling
 .bulk-delete-container {
   margin: $spacing-md 0;
   display: flex;

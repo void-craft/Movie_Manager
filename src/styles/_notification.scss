@@ -8,7 +8,7 @@
   padding: $spacing-md $spacing-lg;
   border-radius: $radius-sm;
   color: $text-light;
-  z-index: 1001;
+  z-index: 99;
   box-shadow: $shadow-md;
   transition: opacity $transition-speed, transform $transition-speed;
   min-width: 250px;

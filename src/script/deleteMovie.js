@@ -1,4 +1,3 @@
-// Function to toggle the Delete Movie section visibility
 function toggleDeleteMovieSection() {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
@@ -7,34 +6,28 @@ function toggleDeleteMovieSection() {
   const deleteClearButton = document.getElementById('deleteClearButton');
   const deleteCancelButton = document.getElementById('deleteCancelButton');
 
-  // Collapse other sections
   addMovieSection?.classList.remove('expanded');
   editMovieSection?.classList.remove('expanded');
 
-  // Toggle Delete Movie section
   const isExpanded = deleteMovieSection.classList.toggle('expanded');
-  
+
   if (isExpanded) {
-    // Reset fields and UI
     clearDeleteMovieFields();
-    setDeleteMovieState('search'); // Default to search state
+    setDeleteMovieState('search');
     hideDeleteSearchResults();
     hideDeleteConfirmation();
-    
-    // Show search and clear buttons
+
     deleteSearchButton.style.display = 'inline-block';
     deleteClearButton.style.display = 'inline-block';
     deleteCancelButton.style.display = 'inline-block';
   }
 }
 
-// Function to clear all fields in the Delete Movie section
 function clearDeleteMovieFields() {
   document.getElementById('deleteMovieForm').reset();
-  document.getElementById('deleteMovieId').value = ''; // Clear hidden ID field
+  document.getElementById('deleteMovieId').value = '';
 }
 
-// Function to set the Delete Movie section state (search, results, or confirm)
 function setDeleteMovieState(state) {
   const heading = document.getElementById('deleteMovieHeading');
   const searchForm = document.getElementById('deleteMovieForm');
@@ -59,14 +52,11 @@ function setDeleteMovieState(state) {
   }
 }
 
-// Function to show search results
 function showDeleteSearchResults(movies) {
   const searchResultsList = document.getElementById('deleteSearchResultsList');
 
-  // Clear previous results
   searchResultsList.innerHTML = '';
 
-  // Add new results
   movies.forEach((movie) => {
     const listItem = document.createElement('li');
     listItem.textContent = `${movie.name} (${movie.year}) - ${movie.director}`;
@@ -77,23 +67,19 @@ function showDeleteSearchResults(movies) {
     searchResultsList.appendChild(listItem);
   });
 
-  // Show the results container
   setDeleteMovieState('results');
 }
 
-// Function to hide search results
 function hideDeleteSearchResults() {
   const searchResults = document.getElementById('deleteSearchResults');
   searchResults.style.display = 'none';
 }
 
-// Function to show delete confirmation
 function showDeleteConfirmation(movie) {
   const confirmSection = document.getElementById('deleteConfirmation');
   const movieDetails = document.getElementById('deleteMovieDetails');
   const deleteMovieIdField = document.getElementById('deleteMovieConfirmId');
-  
-  // Display movie details
+
   movieDetails.innerHTML = `
     <p><strong>Name:</strong> ${movie.name}</p>
     <p><strong>Year:</strong> ${movie.year}</p>
@@ -101,21 +87,17 @@ function showDeleteConfirmation(movie) {
     <p><strong>Genre:</strong> ${movie.genre}</p>
     <p><strong>ID:</strong> ${movie.id}</p>
   `;
-  
-  // Set the movie ID in the hidden field
+
   deleteMovieIdField.value = movie.id;
-  
-  // Show the confirmation section
+
   confirmSection.style.display = 'block';
 }
 
-// Function to hide delete confirmation
 function hideDeleteConfirmation() {
   const confirmSection = document.getElementById('deleteConfirmation');
   confirmSection.style.display = 'none';
 }
 
-// Function to handle search for deletion
 function handleDeleteMovieSearch() {
   const form = document.getElementById('deleteMovieForm');
   const searchCriteria = {
@@ -126,7 +108,6 @@ function handleDeleteMovieSearch() {
     id: form.querySelector('#deleteMovieIdSearch').value,
   };
 
-  // Remove empty fields from the search criteria
   const filteredCriteria = Object.fromEntries(
     Object.entries(searchCriteria).filter(([_, value]) => value)
   );
@@ -152,7 +133,6 @@ function handleDeleteMovieSearch() {
     });
 }
 
-// Function to handle movie deletion
 function handleDeleteMovie() {
   const movieId = document.getElementById('deleteMovieConfirmId').value;
 
@@ -164,15 +144,15 @@ function handleDeleteMovie() {
   deleteMovieById(movieId)
     .then(() => {
       showSuccessMessage('Movie has been deleted successfully!');
-      // Keep the delete section expanded
+
       const deleteMovieSection = document.getElementById('deleteMovieSection');
       if (!deleteMovieSection.classList.contains('expanded')) {
         deleteMovieSection.classList.add('expanded');
       }
-      // Reset to search state
+
       setDeleteMovieState('search');
       clearDeleteMovieFields();
-      // Refresh the movie list
+
       showMovies();
     })
     .catch((error) => {
@@ -180,14 +160,17 @@ function handleDeleteMovie() {
     });
 }
 
-// Attach event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   const deleteMovieForm = document.getElementById('deleteMovieForm');
   const deleteClearButton = document.getElementById('deleteClearButton');
   const deleteSearchButton = document.getElementById('deleteSearchButton');
   const deleteButton = document.getElementById('deleteButton');
-  const cancelDeleteResultsButton = document.getElementById('cancelDeleteResultsButton');
-  const cancelDeleteConfirmButton = document.getElementById('cancelDeleteConfirmButton');
+  const cancelDeleteResultsButton = document.getElementById(
+    'cancelDeleteResultsButton'
+  );
+  const cancelDeleteConfirmButton = document.getElementById(
+    'cancelDeleteConfirmButton'
+  );
   const cancelDeleteButton = document.getElementById('deleteCancelButton');
 
   if (deleteMovieForm) {
@@ -223,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (cancelDeleteButton) {
     cancelDeleteButton.addEventListener('click', () => {
-      // Collapse the delete movie section
       const deleteMovieSection = document.getElementById('deleteMovieSection');
       deleteMovieSection.classList.remove('expanded');
       clearDeleteMovieFields();

@@ -1,18 +1,16 @@
-// Function to toggle the Add Movie section
 function toggleAddMovieSection() {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
 
-  // Collapse other sections
+  
   editMovieSection?.classList.remove('expanded');
   deleteMovieSection?.classList.remove('expanded');
 
-  // Toggle Add Movie section
+  
   addMovieSection.classList.toggle('expanded');
 }
 
-// Function to handle form submission
 function handleAddMovieFormSubmit(event) {
   event.preventDefault();
 
@@ -24,19 +22,17 @@ function handleAddMovieFormSubmit(event) {
     genre: form.querySelector('input[placeholder="Enter genre"]').value,
   };
 
-  // Add movie to the database
   postMovie(movie)
     .then(() => {
       showSuccessMessage(`"${movie.name}" has been added successfully!`);
-      toggleAddMovieSection(); // Collapse the form
-      showMovies(); // Refresh the movie list
+      toggleAddMovieSection(); 
+      showMovies(); 
     })
     .catch((error) => {
       showErrorMessage(`Error adding movie: ${error.message}`);
     });
 }
 
-// Attach event listeners
 document.addEventListener('DOMContentLoaded', () => {
   const addMovieForm = document.getElementById('addMovieForm');
   if (addMovieForm) {

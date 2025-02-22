@@ -29,32 +29,18 @@
       "genre": "Horror"
     },
     {
-      "id": "f327",
-      "name": "Spirited Away",
-      "year": 2001,
-      "director": "Hayao Miyazaki",
-      "genre": "Drama"
-    },
-    {
-      "id": "e119",
-      "name": "Interstellar",
-      "year": 2014,
-      "director": "Christopher Nolan",
-      "genre": "Sci-Fi"
-    },
-    {
-      "id": "g888",
-      "name": "The Shining",
-      "year": 1980,
-      "director": "Stanley",
-      "genre": "Horror"
-    },
-    {
       "id": "8482",
       "name": "Outsider",
       "year": 2007,
       "director": "Nobody",
       "genre": "Thriller"
+    },
+    {
+      "id": "74f6",
+      "name": "8 Men",
+      "year": 2000,
+      "director": "Dont know",
+      "genre": "Action"
     }
   ]
 }

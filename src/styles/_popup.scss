@@ -1,6 +1,14 @@
-@import 'variables.scss';
-
 .popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
   &__overlay {
     position: fixed;
     top: 0;
@@ -8,19 +16,18 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    z-index: 1001;
   }
 
   &__content {
+    position: relative;
     background-color: $bg-light;
     padding: $spacing-lg;
     border-radius: $radius-sm;
     box-shadow: $shadow-md;
     width: 350px;
     max-width: 90%;
+    z-index: 1002;
   }
 
   &__title {
@@ -44,12 +51,6 @@
     font-size: 16px;
   }
 
-  &__button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: $spacing-md;
-  }
-
   &__button {
     padding: $spacing-sm $spacing-md;
     border: none;
@@ -58,34 +59,53 @@
     font-weight: bold;
     min-width: 100px;
     transition: background-color $transition-speed, transform $transition-speed;
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: $spacing-md;
+    }
   }
 
   &__submit-btn {
     background-color: $tertiary-color;
     color: $text-light;
-  }
 
-  &__submit-btn:hover {
-    background-color: $bg-dark;
-    transform: scale(1.05);
+    &:hover {
+      background-color: $bg-dark;
+      transform: scale(1.05);
+    }
   }
+}
 
-  &__delete-btn {
-    background-color: $danger-color;
-    color: $text-light;
-  }
+.confirm-message {
+  font-size: 16px;
+  color: $text-dark;
+  margin-bottom: $spacing-md;
+  line-height: 1.5;
 
-  &__delete-btn:hover {
+
+& strong {
+  font-weight: bold;
+  color: $danger-color;
+}
+}
+
+.delete-btn {
+  background-color: $danger-color;
+  color: $text-light;
+
+  &:hover {
     background-color: $danger-dark;
     transform: scale(1.05);
   }
+}
 
-  &__cancel-btn {
-    background-color: $muted-color;
-    color: $text-dark;
-  }
+.cancel-btn {
+  background-color: $muted-color;
+  color: $text-dark;
 
-  &__cancel-btn:hover {
+&:hover {
     background-color: $highlight-color;
     transform: scale(1.05);
   }
