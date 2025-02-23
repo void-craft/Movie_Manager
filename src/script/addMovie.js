@@ -1,4 +1,6 @@
-function toggleAddMovieSection() {
+import { postMovie } from './services.js';
+
+window.toggleAddMovieSection = function () {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
@@ -6,7 +8,7 @@ function toggleAddMovieSection() {
   editMovieSection?.classList.remove('expanded');
   deleteMovieSection?.classList.remove('expanded');
   addMovieSection.classList.toggle('expanded');
-}
+};
 
 function handleAddMovieFormSubmit(event) {
   event.preventDefault();

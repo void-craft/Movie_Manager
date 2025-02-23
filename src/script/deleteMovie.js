@@ -1,4 +1,4 @@
-function toggleDeleteMovieSection() {
+window.toggleDeleteMovieSection = function() {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
