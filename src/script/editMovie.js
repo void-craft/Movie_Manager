@@ -9,53 +9,22 @@ window.toggleEditMovieSection = function() {
 
 }
 
-function clearEditMovieFields() {
-  document.getElementById('editMovieForm').reset();
-  document.getElementById('editMovieEditForm').reset();
-  document.getElementById('editMovieId').value = '';
-  document.getElementById('editMovieEditId').value = '';
-}
+async function findMovieByCriteria(criteria) {
+  try {
+    const response = await fetch('http://localhost:3000/movies');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movies. Server returned ${response.status}`);
+    }
+    const movies = await response.json();
 
-function setEditMovieState(state) {
-  const heading = document.getElementById('editMovieHeading');
-  const searchForm = document.getElementById('editMovieForm');
-  const searchResults = document.getElementById('searchResults');
-  const editForm = document.getElementById('editMovieEditForm');
-
-  if (state === 'search') {
-    heading.textContent = 'Search for a Movie to Edit';
-    searchForm.style.display = 'flex';
-    searchResults.style.display = 'none';
-    editForm.style.display = 'none';
-  } else if (state === 'results') {
-    heading.textContent = 'Search Results';
-    searchForm.style.display = 'none';
-    searchResults.style.display = 'block';
-    editForm.style.display = 'none';
-  } else if (state === 'edit') {
-    heading.textContent = 'Edit Movie Details';
-    searchForm.style.display = 'none';
-    searchResults.style.display = 'none';
-    editForm.style.display = 'flex';
-  }
-}
-
-function showSearchResults(movies) {
-  const searchResultsList = document.getElementById('searchResultsList');
-
-  searchResultsList.innerHTML = '';
-
-  movies.forEach((movie) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${movie.name} (${movie.year}) - ${movie.director}`;
-    listItem.addEventListener('click', () => {
-      populateEditForm(movie);
-      setEditMovieState('edit');
+    return movies.filter((movie) => {
+      return Object.entries(criteria).every(([key, value]) => {
+        return String(movie[key]).toLowerCase().includes(String(value).toLowerCase());
+      });
     });
-    searchResultsList.appendChild(listItem);
-  });
-
-  setEditMovieState('results');
+  } catch (error) {
+    throw error;
+  }
 }
 
 function handleEditMovieSearch() {
@@ -93,21 +62,52 @@ function handleEditMovieSearch() {
     });
 }
 
-async function findMovieByCriteria(criteria) {
-  try {
-    const response = await fetch('http://localhost:3000/movies');
-    if (!response.ok) {
-      throw new Error(`Failed to fetch movies. Server returned ${response.status}`);
-    }
-    const movies = await response.json();
+function showSearchResults(movies) {
+  const searchResultsList = document.getElementById('searchResultsList');
 
-    return movies.filter((movie) => {
-      return Object.entries(criteria).every(([key, value]) => {
-        return String(movie[key]).toLowerCase().includes(String(value).toLowerCase());
-      });
+  searchResultsList.innerHTML = '';
+
+  movies.forEach((movie) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${movie.name} (${movie.year}) - ${movie.director}`;
+    listItem.addEventListener('click', () => {
+      populateEditForm(movie);
+      setEditMovieState('edit');
     });
-  } catch (error) {
-    throw error;
+    searchResultsList.appendChild(listItem);
+  });
+
+  setEditMovieState('results');
+}
+
+function clearEditMovieFields() {
+  document.getElementById('editMovieForm').reset();
+  document.getElementById('editMovieEditForm').reset();
+  document.getElementById('editMovieId').value = '';
+  document.getElementById('editMovieEditId').value = '';
+}
+
+function setEditMovieState(state) {
+  const heading = document.getElementById('editMovieHeading');
+  const searchForm = document.getElementById('editMovieForm');
+  const searchResults = document.getElementById('searchResults');
+  const editForm = document.getElementById('editMovieEditForm');
+
+  if (state === 'search') {
+    heading.textContent = 'Search for a Movie to Edit';
+    searchForm.style.display = 'flex';
+    searchResults.style.display = 'none';
+    editForm.style.display = 'none';
+  } else if (state === 'results') {
+    heading.textContent = 'Search Results';
+    searchForm.style.display = 'none';
+    searchResults.style.display = 'block';
+    editForm.style.display = 'none';
+  } else if (state === 'edit') {
+    heading.textContent = 'Edit Movie Details';
+    searchForm.style.display = 'none';
+    searchResults.style.display = 'none';
+    editForm.style.display = 'flex';
   }
 }
 
@@ -189,7 +189,7 @@ async function updateMovie(movie) {
 }
 
 function showEditMovieForm(movie) {
-  toggleEditMovieSection(true);
+  window.toggleEditMovieSection(true);
   populateEditForm(movie);
 
   const editMovieSection = document.getElementById('editMovieSection');

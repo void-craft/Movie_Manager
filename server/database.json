@@ -16,7 +16,7 @@
     },
     {
       "id": "a562",
-      "name": "The Conjuring",
+      "name": "The Conjuring III",
       "year": 2013,
       "director": "James Wan",
       "genre": "Horror"
@@ -41,6 +41,13 @@
       "year": 2025,
       "director": "Meow I",
       "genre": "Cat"
+    },
+    {
+      "id": "f832",
+      "name": "The Bad Cat II",
+      "year": 2001,
+      "director": "Hjdfsf",
+      "genre": "Horror"
     }
   ]
 }
