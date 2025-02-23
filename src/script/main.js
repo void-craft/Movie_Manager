@@ -6,3 +6,4 @@ import "./deleteMovie.js";
 import "./editMovie.js";
 import "./search.js";
 import "./showMovies.js";
+import "./utils.js"

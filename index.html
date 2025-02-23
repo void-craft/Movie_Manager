@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +9,13 @@
   <link rel="shortcut icon" href="#" />
   <script defer src="./src/script/popupUtils.js"></script>
   <script defer src="./src/script/messagePopup.js"></script>
-  <script defer src="./src/script/services.js"></script>
-  <script defer src="./src/script/showMovies.js"></script>
+  <script type="module" src="./src/script/services.js" defer></script>
+  <script type="module" src="./src/script/showMovies.js" defer></script>
   <script defer src="./src/script/addMovie.js"></script>
   <script defer src="./src/script/deleteMovie.js"></script>
   <script defer src="./src/script/editMovie.js"></script>
-  <script defer src="./src/script/search.js"></script>
+  <script type="module" src="./src/script/search.js" defer></script>
 </head>
-
 <body class="page">
   <header class="header">
     <h1 class="header__title">Movie Management System</h1>
@@ -25,13 +23,13 @@
   <main>
     <!-- --------------------- LEFT SECTION --------------------- -->
     <section class="controls">
-
       <div class="controls__buttons">
         <!-- ------- ADD MOVIE ------- -->
         <button class="controls__button controls__button--add" onclick="toggleAddMovieSection()">
           <i class="fa fa-plus"></i> Add Movie
         </button>
         <div id="addMovieSection" class="collapsible-section">
+          <h3 id="addMovieHeading">Add Movie Details</h3>
           <form id="addMovieForm" class="collapsible-form">
             <input type="text" placeholder="Enter movie name" required />
             <input type="number" placeholder="Enter release year" required />
@@ -94,7 +92,7 @@
           <i class="fa fa-trash"></i> Delete Movie
         </button>
         <div id="deleteMovieSection" class="collapsible-section">
-          <h3 id="deleteMovieHeading">Search for a Movie to Deleteo</h3>
+          <h3 id="deleteMovieHeading">Search for a Movie to Delete</h3>
 
           <form id="deleteMovieForm" class="collapsible-form">
             <input type="hidden" id="deleteMovieId" />
@@ -151,5 +149,4 @@
     </section>
   </main>
 </body>
-
 </html>

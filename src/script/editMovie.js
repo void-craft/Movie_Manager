@@ -1,66 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const editMovieForm = document.getElementById('editMovieForm');
-  const cancelButton = document.getElementById('cancelButton');
-  const clearButton = document.getElementById('clearButton');
-  const searchButton = document.getElementById('searchButton');
-  const saveButton = document.getElementById('saveButton');
-  const cancelResultsButton = document.getElementById('cancelResultsButton');
-  const cancelEditButton = document.getElementById('cancelEditButton');
-
-  if (editMovieForm) {
-    editMovieForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      handleEditMovieSearch();
-    });
-  }
-
-  if (clearButton) {
-    clearButton.addEventListener('click', clearEditMovieFields);
-  }
-
-  if (searchButton) {
-    searchButton.addEventListener('click', handleEditMovieSearch);
-  }
-
-  if (saveButton) {
-    saveButton.addEventListener('click', handleEditMovieSave);
-  }
-
-  if (cancelButton) {
-    cancelButton.addEventListener('click', () => {
-      toggleEditMovieSection(false);
-      clearEditMovieFields();
-    });
-  }
-
-  if (cancelResultsButton) {
-    cancelResultsButton.addEventListener('click', () => {
-      setEditMovieState('search');
-    });
-  }
-
-  if (cancelEditButton) {
-    cancelEditButton.addEventListener('click', () => {
-      setEditMovieState('search');
-    });
-  }
-});
-
-function toggleEditMovieSection(expand = true) {
+function toggleEditMovieSection() {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
 
   addMovieSection?.classList.remove('expanded');
   deleteMovieSection?.classList.remove('expanded');
+  editMovieSection.classList.toggle('expanded');
 
-  if (expand) {
-    editMovieSection.classList.add('expanded');
-    clearEditMovieFields();
-    setEditMovieState('search');
-  } else {
-    editMovieSection.classList.remove('expanded');
-  }
 }
 
 function clearEditMovieFields() {
@@ -253,3 +199,51 @@ function showEditMovieForm(movie) {
     editMovieSection.classList.remove('highlight-section');
   }, 2000);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editMovieForm = document.getElementById('editMovieForm');
+  const cancelButton = document.getElementById('cancelButton');
+  const clearButton = document.getElementById('clearButton');
+  const searchButton = document.getElementById('searchButton');
+  const saveButton = document.getElementById('saveButton');
+  const cancelResultsButton = document.getElementById('cancelResultsButton');
+  const cancelEditButton = document.getElementById('cancelEditButton');
+
+  if (editMovieForm) {
+    editMovieForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      handleEditMovieSearch();
+    });
+  }
+
+  if (clearButton) {
+    clearButton.addEventListener('click', clearEditMovieFields);
+  }
+
+  if (searchButton) {
+    searchButton.addEventListener('click', handleEditMovieSearch);
+  }
+
+  if (saveButton) {
+    saveButton.addEventListener('click', handleEditMovieSave);
+  }
+
+  if (cancelButton) {
+    cancelButton.addEventListener('click', () => {
+      toggleEditMovieSection(false);
+      clearEditMovieFields();
+    });
+  }
+
+  if (cancelResultsButton) {
+    cancelResultsButton.addEventListener('click', () => {
+      setEditMovieState('search');
+    });
+  }
+
+  if (cancelEditButton) {
+    cancelEditButton.addEventListener('click', () => {
+      setEditMovieState('search');
+    });
+  }
+});

@@ -1,16 +1,11 @@
-function toggleDeleteMovieSection(expand = true) {
+function toggleDeleteMovieSection() {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
 
   addMovieSection?.classList.remove('expanded');
   editMovieSection?.classList.remove('expanded');
-
-  if (expand) {
-    deleteMovieSection.classList.add('expanded');
-  } else {
-    deleteMovieSection.classList.remove('expanded');
-  }
+  deleteMovieSection.classList.toggle('expanded');
 }
 
 function setDeleteMovieState(state) {

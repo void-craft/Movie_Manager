@@ -1,3 +1,7 @@
+// showMovies.js
+import { formatColumnName } from './utils.js';
+import { getMovies } from './services.js'; 
+
 async function showMovies() {
   try {
     const existingMessages = document.getElementById('notificationMessage');

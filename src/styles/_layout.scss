@@ -1,6 +1,6 @@
 @import 'variables.scss';
 
-html, body {
+html, .page {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ html, body {
 }
 
 .header {
-    padding: $spacing-sm 0;
+    padding: $spacing-lg 0;
     background-color: $primary-color;
     box-shadow: $shadow-md;
 
@@ -45,12 +45,11 @@ main {
     &__buttons {
         display: flex;
         flex-direction: column;
-        gap: $spacing-md;
         flex: 1;
     }
 
     &__button {
-        padding: $spacing-sm $spacing-md;
+        padding: $spacing-md;
         border: none;
         border-radius: $radius-sm;
         cursor: pointer;
@@ -58,16 +57,8 @@ main {
         color: $text-light;
         font-weight: bold;
 
-        &--add {
-            background-color: $success-color;
-        }
-
-        &--edit {
-            background-color: $warning-color;
-        }
-
-        &--delete {
-            background-color: $danger-color;
+        &--add, &--edit, &--delete {
+            background-color: $tertiary-color;
         }
 
         &:hover {

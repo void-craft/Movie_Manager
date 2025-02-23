@@ -1,5 +1,5 @@
-/* ---------------------------- ADD A MOVIE ---------------------------- */
-async function postMovie(movie) {
+// services.js
+export async function postMovie(movie) {
   try {
     let response = await fetch('http://localhost:3000/movies', {
       method: 'POST',
@@ -15,8 +15,7 @@ async function postMovie(movie) {
   }
 }
 
-/* ---------------------------- GET A MOVIE ---------------------------- */
-async function getMovie(movieId) {
+export async function getMovie(movieId) {
   try {
     let response = await fetch(`http://localhost:3000/movies/${movieId}`);
     if (!response.ok) {
@@ -31,8 +30,7 @@ async function getMovie(movieId) {
   }
 }
 
-/* ---------------------------- GET ALL MOVIES ---------------------------- */
-async function getMovies() {
+export async function getMovies() {
   try {
     let response = await fetch(`http://localhost:3000/movies/`);
     if (!response.ok) {
@@ -47,8 +45,7 @@ async function getMovies() {
   }
 }
 
-/* ---------------------------- UPDATE A MOVIE ---------------------------- */
-async function updateMovie(movie) {
+export async function updateMovie(movie) {
   try {
     let response = await fetch(`http://localhost:3000/movies/${movie.id}`, {
       method: 'PUT',
@@ -69,8 +66,7 @@ async function updateMovie(movie) {
   }
 }
 
-/* ---------------------------- DELETE A MOVIE ---------------------------- */
-async function deleteMovieById(movieId) {
+export async function deleteMovieById(movieId) {
   try {
     let response = await fetch(`http://localhost:3000/movies/${movieId}`, {
       method: 'DELETE',
