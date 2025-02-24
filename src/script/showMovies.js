@@ -2,7 +2,7 @@
 import { formatColumnName } from './utils.js';
 import { getMovies } from './services.js'; 
 
-async function showMovies() {
+export async function showMovies() {
   try {
     const existingMessages = document.getElementById('notificationMessage');
     if (existingMessages) {
@@ -171,7 +171,6 @@ function updateBulkDeleteButton() {
   }
 }
 
-// Reuse the delete section for confirmation
 function confirmDelete(movies) {
   if (movies.length === 0) {
     showInfoMessage('No movies selected for deletion.');

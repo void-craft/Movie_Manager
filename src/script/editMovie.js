@@ -1,4 +1,5 @@
 import { getMovie, putMovie } from './services.js';
+import { showMovies } from './showMovies.js';
 
 // Toggle the edit movie section
 window.toggleEditMovieSection = function () {
