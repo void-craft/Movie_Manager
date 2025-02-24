@@ -15,19 +15,18 @@ export async function postMovie(movie) {
   }
 }
 
-export async function getMovie(movieId) {
-  try {
-    let response = await fetch(`http://localhost:3000/movies/${movieId}`);
-    if (!response.ok) {
-      throw new Error(`Movie with ID ${movieId} not found`);
-    }
-    let movie = await response.json();
-    console.log('Movie Requested: ', movie);
-    return movie;
-  } catch (error) {
-    console.error('Error fetching the movie:', error);
-    throw error;
+export async function getMovie(criteria) {
+  const response = await fetch('http://localhost:3000/movies');
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movies. Server returned ${response.status}`);
   }
+  const movies = await response.json();
+
+  return movies.filter((movie) => {
+    return Object.entries(criteria).every(([key, value]) => {
+      return String(movie[key]).toLowerCase().includes(String(value).toLowerCase());
+    });
+  });
 }
 
 export async function getMovies() {
@@ -45,7 +44,7 @@ export async function getMovies() {
   }
 }
 
-export async function updateMovie(movie) {
+export async function putMovie(movie) {
   try {
     let response = await fetch(`http://localhost:3000/movies/${movie.id}`, {
       method: 'PUT',
@@ -80,6 +79,21 @@ export async function deleteMovieById(movieId) {
     return true;
   } catch (error) {
     console.error('Error deleting movie:', error);
+    throw error;
+  }
+}
+
+export async function getMovieByID(movieId) {
+  try {
+    let response = await fetch(`http://localhost:3000/movies/${movieId}`);
+    if (!response.ok) {
+      throw new Error(`Movie with ID ${movieId} not found`);
+    }
+    let movie = await response.json();
+    console.log('Movie Requested: ', movie);
+    return movie;
+  } catch (error) {
+    console.error('Error fetching the movie:', error);
     throw error;
   }
 }

@@ -1,6 +1,7 @@
 {
   "name": "movies",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "api": "json-server --watch server/database.json --port 3000"
