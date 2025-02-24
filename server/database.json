@@ -22,18 +22,25 @@
       "genre": "Thriller"
     },
     {
-      "id": "74f6",
-      "name": "8 Angry Men",
-      "year": 2000,
-      "director": "Dont know Yet",
-      "genre": "Action"
-    },
-    {
       "id": "f199",
       "name": "A Little Cat V",
       "year": 2025,
       "director": "Meow I",
       "genre": "Cat"
+    },
+    {
+      "id": "ae04",
+      "name": "The Ring",
+      "year": 2000,
+      "director": "James",
+      "genre": "Horror"
+    },
+    {
+      "id": "3dfb",
+      "name": "Hens Are Alive",
+      "year": 2003,
+      "director": "Kelly",
+      "genre": "Mystery"
     }
   ]
 }
