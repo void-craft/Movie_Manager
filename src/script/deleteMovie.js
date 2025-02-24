@@ -1,4 +1,7 @@
-window.toggleDeleteMovieSection = function() {
+import { deleteMovieById, getMovie } from './services.js';
+
+// Toggle the delete movie section
+window.toggleDeleteMovieSection = function () {
   const addMovieSection = document.getElementById('addMovieSection');
   const editMovieSection = document.getElementById('editMovieSection');
   const deleteMovieSection = document.getElementById('deleteMovieSection');
@@ -6,8 +9,10 @@ window.toggleDeleteMovieSection = function() {
   addMovieSection?.classList.remove('expanded');
   editMovieSection?.classList.remove('expanded');
   deleteMovieSection.classList.toggle('expanded');
-}
+  setDeleteMovieState('search'); // Reset to search state when toggling
+};
 
+// Set the state of the delete movie section
 function setDeleteMovieState(state) {
   const heading = document.getElementById('deleteMovieHeading');
   const searchForm = document.getElementById('deleteMovieForm');
@@ -32,58 +37,32 @@ function setDeleteMovieState(state) {
   }
 }
 
+// Clear the delete movie fields
 function clearDeleteMovieFields() {
   document.getElementById('deleteMovieForm').reset();
   document.getElementById('deleteMovieId').value = '';
+  setDeleteMovieState('search');
+  handleSearchButtonVisibility(); // Update search button visibility
 }
 
-function showDeleteSearchResults(movies) {
-  const searchResultsList = document.getElementById('deleteSearchResultsList');
+// Handle search button visibility based on form input
+function handleSearchButtonVisibility() {
+  const form = document.getElementById('deleteMovieForm');
+  const searchButton = document.getElementById('deleteSearchButton');
+  const clearButton = document.getElementById('deleteClearButton');
 
-  searchResultsList.innerHTML = '';
+  const hasInput = Array.from(form.elements).some(
+    (element) => element.value && element.type !== 'hidden'
+  );
 
-  movies.forEach((movie) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${movie.name} (${movie.year}) - ${movie.director}`;
-    listItem.addEventListener('click', () => {
-      showDeleteConfirmation(movie);
-      setDeleteMovieState('confirm');
-    });
-    searchResultsList.appendChild(listItem);
-  });
-
-  setDeleteMovieState('results');
+  searchButton.style.display = hasInput ? 'inline-block' : 'none';
+  clearButton.style.display = hasInput ? 'inline-block' : 'none';
 }
 
-function hideDeleteSearchResults() {
-  const searchResults = document.getElementById('deleteSearchResults');
-  searchResults.style.display = 'none';
-}
+// Handle movie search
+function handleDeleteMovieSearch(event) {
+  event.preventDefault();
 
-function showDeleteConfirmation(movie) {
-  const confirmSection = document.getElementById('deleteConfirmation');
-  const movieDetails = document.getElementById('deleteMovieDetails');
-  const deleteMovieIdField = document.getElementById('deleteMovieConfirmId');
-
-  movieDetails.innerHTML = `
-    <p><strong>Name:</strong> ${movie.name}</p>
-    <p><strong>Year:</strong> ${movie.year}</p>
-    <p><strong>Director:</strong> ${movie.director}</p>
-    <p><strong>Genre:</strong> ${movie.genre}</p>
-    <p><strong>ID:</strong> ${movie.id}</p>
-  `;
-
-  deleteMovieIdField.value = movie.id;
-
-  confirmSection.style.display = 'block';
-}
-
-function hideDeleteConfirmation() {
-  const confirmSection = document.getElementById('deleteConfirmation');
-  confirmSection.style.display = 'none';
-}
-
-function handleDeleteMovieSearch() {
   const form = document.getElementById('deleteMovieForm');
   const searchCriteria = {
     name: form.querySelector('#deleteMovieName').value,
@@ -102,7 +81,7 @@ function handleDeleteMovieSearch() {
     return;
   }
 
-  findMovieByCriteria(filteredCriteria)
+  getMovie(filteredCriteria)
     .then((movies) => {
       if (movies.length === 0) {
         showInfoMessage('No movies found matching the search criteria.');
@@ -118,6 +97,43 @@ function handleDeleteMovieSearch() {
     });
 }
 
+// Show search results in a list
+function showDeleteSearchResults(movies) {
+  const searchResultsList = document.getElementById('deleteSearchResultsList');
+  searchResultsList.innerHTML = '';
+
+  movies.forEach((movie) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${movie.name} (${movie.year}) - ${movie.director}`;
+    listItem.addEventListener('click', () => {
+      showDeleteConfirmation(movie);
+      setDeleteMovieState('confirm');
+    });
+    searchResultsList.appendChild(listItem);
+  });
+
+  setDeleteMovieState('results');
+}
+
+// Show confirmation section with movie details
+function showDeleteConfirmation(movie) {
+  const confirmSection = document.getElementById('deleteConfirmation');
+  const movieDetails = document.getElementById('deleteMovieDetails');
+  const deleteMovieIdField = document.getElementById('deleteMovieConfirmId');
+
+  movieDetails.innerHTML = `
+    <p><strong>Name:</strong> ${movie.name}</p>
+    <p><strong>Year:</strong> ${movie.year}</p>
+    <p><strong>Director:</strong> ${movie.director}</p>
+    <p><strong>Genre:</strong> ${movie.genre}</p>
+    <p><strong>ID:</strong> ${movie.id}</p>
+  `;
+
+  deleteMovieIdField.value = movie.id;
+  setDeleteMovieState('confirm');
+}
+
+// Handle movie deletion
 function handleDeleteMovie() {
   const movieId = document.getElementById('deleteMovieConfirmId').value;
 
@@ -129,40 +145,33 @@ function handleDeleteMovie() {
   deleteMovieById(movieId)
     .then(() => {
       showSuccessMessage('Movie has been deleted successfully!');
-
-      const deleteMovieSection = document.getElementById('deleteMovieSection');
-      if (!deleteMovieSection.classList.contains('expanded')) {
-        deleteMovieSection.classList.add('expanded');
-      }
-
       setDeleteMovieState('search');
       clearDeleteMovieFields();
-
-      showMovies();
+      showMovies(); // Refresh the movie list
     })
     .catch((error) => {
       showErrorMessage(`Error deleting movie: ${error.message}`);
     });
 }
 
+// Event listeners
 document.addEventListener('DOMContentLoaded', () => {
   const deleteMovieForm = document.getElementById('deleteMovieForm');
   const deleteClearButton = document.getElementById('deleteClearButton');
   const deleteSearchButton = document.getElementById('deleteSearchButton');
   const deleteButton = document.getElementById('deleteButton');
-  const cancelDeleteResultsButton = document.getElementById(
-    'cancelDeleteResultsButton'
-  );
-  const cancelDeleteConfirmButton = document.getElementById(
-    'cancelDeleteConfirmButton'
-  );
+  const cancelDeleteResultsButton = document.getElementById('cancelDeleteResultsButton');
+  const cancelDeleteConfirmButton = document.getElementById('cancelDeleteConfirmButton');
   const cancelDeleteButton = document.getElementById('deleteCancelButton');
 
+  // Add input event listeners to show/hide the search button
+  const searchInputs = deleteMovieForm.querySelectorAll('input[type="text"], input[type="number"]');
+  searchInputs.forEach((input) => {
+    input.addEventListener('input', handleSearchButtonVisibility);
+  });
+
   if (deleteMovieForm) {
-    deleteMovieForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      handleDeleteMovieSearch();
-    });
+    deleteMovieForm.addEventListener('submit', handleDeleteMovieSearch);
   }
 
   if (deleteClearButton) {
@@ -191,8 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (cancelDeleteButton) {
     cancelDeleteButton.addEventListener('click', () => {
-      const deleteMovieSection = document.getElementById('deleteMovieSection');
-      deleteMovieSection.classList.remove('expanded');
+      toggleDeleteMovieSection(false);
       clearDeleteMovieFields();
     });
   }

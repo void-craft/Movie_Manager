@@ -8,13 +8,6 @@
       "genre": "Romance"
     },
     {
-      "id": "d736",
-      "name": "Jab We Met II",
-      "year": 2006,
-      "director": "Tha",
-      "genre": "Romantic Comedy"
-    },
-    {
       "id": "a562",
       "name": "The Conjuring III",
       "year": 2013,
@@ -41,13 +34,6 @@
       "year": 2025,
       "director": "Meow I",
       "genre": "Cat"
-    },
-    {
-      "id": "f832",
-      "name": "The Bad Cat II",
-      "year": 2001,
-      "director": "Hjdfsf",
-      "genre": "Horror"
     }
   ]
 }
